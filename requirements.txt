@@ -1,0 +1,31 @@
+# Core LLM and Agent Orchestration
+langchain>=0.3.0
+langchain-core>=0.3.0
+langchain-google-genai>=2.0.0
+google-genai>=0.1.0
+langgraph>=0.2.0
+pydantic>=2.10.0
+pydantic-settings>=2.0.0
+python-dotenv>=1.0.1
+
+# Scraping & PDF Generation
+playwright>=1.49.0
+jinja2>=3.1.4
+
+# Browser Automation & Form Filling
+browser-use>=0.1.30
+
+# Google Sheets & Gmail Integration
+gspread>=6.1.0
+google-auth>=2.36.0
+google-auth-oauthlib>=1.2.1
+google-auth-httplib2>=0.2.0
+google-api-python-client>=2.154.0
+
+# Cloud Runner & Web Dashboard
+fastapi>=0.110.0
+uvicorn>=0.28.0
+
+# Notifications & Utilities
+plyer>=2.1.0
+requests>=2.32.3

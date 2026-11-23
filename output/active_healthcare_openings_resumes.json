@@ -1,0 +1,112 @@
+[
+  {
+    "index": 1,
+    "company": "Optum (UnitedHealth Group)",
+    "role": "Healthcare Data Analyst & BI Developer",
+    "location": "Chennai / Bangalore, India",
+    "score": 93,
+    "summary": "Data & Healthcare Automation Engineer with nearly 2 years of dedicated healthcare analytics experience at Neuberg Diagnostics and enterprise AI automation expertise. Specialized in deploying production computer vision models (YOLO v8, OpenCV), autonomous AI agent architectures (LangGraph, FastAPI), and automated clinical data pipelines. Targeting Optum (UnitedHealth Group) to scale next-generation AI and intelligent healthcare workflows.",
+    "primary_skills": [
+      "Autonomous AI Agents (LangGraph, LangChain)",
+      "Ultralytics YOLO v8 (Real-Time Object & Face Detection)",
+      "OpenCV Computer Vision Pipelines",
+      "FastAPI Microservices",
+      "Healthcare Operations Intelligence & TAT Optimization",
+      "Diagnostic Center Performance & Laboratory Reporting",
+      "EHR/EMR & Health App Backend Validation (Neu5R)"
+    ],
+    "secondary_skills": [
+      "MS SQL Server (T-SQL, SSMS)",
+      "MySQL",
+      "Azure Data Studio",
+      "Workflow Automation (Python, Power Automate)",
+      "WhatsApp Business API / Group Automations",
+      "RESTful API Integration (Postman, Requests)"
+    ],
+    "pdf_path": "D:\\NOV-2026\\TEST-AGENT\\output\\Resume_Optum_UnitedHealth_Group_Healthcare_Data_Analyst__BI_Developer.pdf",
+    "pdf_basename": "Resume_Optum_UnitedHealth_Group_Healthcare_Data_Analyst__BI_Developer.pdf"
+  },
+  {
+    "index": 2,
+    "company": "athenahealth",
+    "role": "Data Operations Analyst (Platform & EHR)",
+    "location": "Chennai, Tamil Nadu, India",
+    "score": 91,
+    "summary": "Data & Healthcare Automation Engineer with nearly 2 years of dedicated healthcare analytics experience at Neuberg Diagnostics and enterprise AI automation expertise. Proven track record validating healthcare EHR application backends (Neu5R), architecting HIPAA/PHI-compliant clinical data ETL pipelines, and optimizing diagnostic lab SLAs. Targeting the Data Operations Analyst (Platform & EHR) role at athenahealth to drive robust clinical interoperability and workflow reliability.",
+    "primary_skills": [
+      "Healthcare Operations Intelligence & TAT Optimization",
+      "Diagnostic Center Performance & Laboratory Reporting",
+      "EHR/EMR & Health App Backend Validation (Neu5R)",
+      "Clinical Data ETL & Audit Workflows",
+      "Net Promoter Score (NPS) Patient Feedback Portals",
+      "MS SQL Server (T-SQL, SSMS)",
+      "MySQL",
+      "Azure Data Studio"
+    ],
+    "secondary_skills": [
+      "Workflow Automation (Python, Power Automate)",
+      "WhatsApp Business API / Group Automations",
+      "RESTful API Integration (Postman, Requests)",
+      "Power BI Premium (DAX, Semantic Data Modeling, Power Query)",
+      "Tableau",
+      "Zoho Analytics"
+    ],
+    "pdf_path": "D:\\NOV-2026\\TEST-AGENT\\output\\Resume_athenahealth_Data_Operations_Analyst_Platform__EHR.pdf",
+    "pdf_basename": "Resume_athenahealth_Data_Operations_Analyst_Platform__EHR.pdf"
+  },
+  {
+    "index": 3,
+    "company": "CitiusTech",
+    "role": "Healthcare Data Systems Analyst",
+    "location": "Chennai / Bengaluru, India",
+    "score": 91,
+    "summary": "Data & Healthcare Automation Engineer with nearly 2 years of dedicated healthcare analytics experience at Neuberg Diagnostics and enterprise AI automation expertise. Proven track record validating healthcare EHR application backends (Neu5R), architecting HIPAA/PHI-compliant clinical data ETL pipelines, and optimizing diagnostic lab SLAs. Targeting the Healthcare Data Systems Analyst role at CitiusTech to drive robust clinical interoperability and workflow reliability.",
+    "primary_skills": [
+      "Healthcare Operations Intelligence & TAT Optimization",
+      "Diagnostic Center Performance & Laboratory Reporting",
+      "EHR/EMR & Health App Backend Validation (Neu5R)",
+      "Clinical Data ETL & Audit Workflows",
+      "Net Promoter Score (NPS) Patient Feedback Portals",
+      "MS SQL Server (T-SQL, SSMS)",
+      "MySQL",
+      "Azure Data Studio"
+    ],
+    "secondary_skills": [
+      "Workflow Automation (Python, Power Automate)",
+      "WhatsApp Business API / Group Automations",
+      "RESTful API Integration (Postman, Requests)",
+      "Power BI Premium (DAX, Semantic Data Modeling, Power Query)",
+      "Tableau",
+      "Zoho Analytics"
+    ],
+    "pdf_path": "D:\\NOV-2026\\TEST-AGENT\\output\\Resume_CitiusTech_Healthcare_Data_Systems_Analyst.pdf",
+    "pdf_basename": "Resume_CitiusTech_Healthcare_Data_Systems_Analyst.pdf"
+  },
+  {
+    "index": 4,
+    "company": "Philips Healthcare",
+    "role": "Healthcare Quality & Clinical Data Analyst",
+    "location": "Bengaluru / Chennai, India",
+    "score": 88,
+    "summary": "Data & Healthcare Automation Engineer with nearly 2 years of dedicated healthcare analytics experience at Neuberg Diagnostics and enterprise AI automation expertise. Proven success engineering healthcare data pipelines, interactive BI executive telemetry, and automated Python workflows with zero compliance breaches. Prepared to add immediate engineering value at Philips Healthcare.",
+    "primary_skills": [
+      "Healthcare Operations Intelligence & TAT Optimization",
+      "Diagnostic Center Performance & Laboratory Reporting",
+      "EHR/EMR & Health App Backend Validation (Neu5R)",
+      "Clinical Data ETL & Audit Workflows",
+      "MS SQL Server (T-SQL, SSMS)",
+      "MySQL",
+      "Azure Data Studio"
+    ],
+    "secondary_skills": [
+      "Autonomous AI Agents (LangGraph, LangChain)",
+      "Ultralytics YOLO v8 (Real-Time Object & Face Detection)",
+      "OpenCV Computer Vision Pipelines",
+      "Power BI Premium (DAX, Semantic Data Modeling, Power Query)",
+      "Tableau",
+      "Zoho Analytics"
+    ],
+    "pdf_path": "D:\\NOV-2026\\TEST-AGENT\\output\\Resume_Philips_Healthcare_Healthcare_Quality__Clinical_Data_Analyst.pdf",
+    "pdf_basename": "Resume_Philips_Healthcare_Healthcare_Quality__Clinical_Data_Analyst.pdf"
+  }
+]

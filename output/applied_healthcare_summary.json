@@ -1,0 +1,46 @@
+[
+  {
+    "app_id": "APP-20261120-A80588",
+    "company": "Optum (UnitedHealth Group)",
+    "role": "Healthcare Data Analyst & BI Developer",
+    "location": "Chennai / Bangalore, India",
+    "match_score": 93,
+    "pdf_path": "D:\\NOV-2026\\TEST-AGENT\\output\\Resume_Optum_UnitedHealth_Group_Healthcare_Data_Analyst__BI_Developer.pdf",
+    "careers_url": "https://careers.optum.com/jobs/healthcare-data-analyst-&-bi-developer",
+    "date_applied": "2026-11-20 16:58:15",
+    "status": "Applied - Awaiting Response"
+  },
+  {
+    "app_id": "APP-20261120-C6C0DE",
+    "company": "athenahealth",
+    "role": "Data Operations Analyst (Platform & EHR)",
+    "location": "Chennai, Tamil Nadu, India",
+    "match_score": 91,
+    "pdf_path": "D:\\NOV-2026\\TEST-AGENT\\output\\Resume_athenahealth_Data_Operations_Analyst_Platform__EHR.pdf",
+    "careers_url": "https://careers.athenahealth.com/jobs/data-operations-analyst-(platform-&-ehr)",
+    "date_applied": "2026-11-20 16:58:15",
+    "status": "Applied - Awaiting Response"
+  },
+  {
+    "app_id": "APP-20261120-575FFA",
+    "company": "CitiusTech",
+    "role": "Healthcare Data Systems Analyst",
+    "location": "Chennai / Bengaluru, India",
+    "match_score": 91,
+    "pdf_path": "D:\\NOV-2026\\TEST-AGENT\\output\\Resume_CitiusTech_Healthcare_Data_Systems_Analyst.pdf",
+    "careers_url": "https://careers.citiustech.com/jobs/healthcare-data-systems-analyst",
+    "date_applied": "2026-11-20 16:58:15",
+    "status": "Applied - Awaiting Response"
+  },
+  {
+    "app_id": "APP-20261120-A210F3",
+    "company": "Philips Healthcare",
+    "role": "Healthcare Quality & Clinical Data Analyst",
+    "location": "Bengaluru / Chennai, India",
+    "match_score": 88,
+    "pdf_path": "D:\\NOV-2026\\TEST-AGENT\\output\\Resume_Philips_Healthcare_Healthcare_Quality__Clinical_Data_Analyst.pdf",
+    "careers_url": "https://careers.philips.com/jobs/healthcare-quality-&-clinical-data-analyst",
+    "date_applied": "2026-11-20 16:58:15",
+    "status": "Applied - Awaiting Response"
+  }
+]

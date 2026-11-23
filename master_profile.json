@@ -1,0 +1,154 @@
+{
+  "basics": {
+    "name": "Ragil Immanuvel PD",
+    "email": "ragilimmanuvel@gmail.com",
+    "phone": "+91 9345741472",
+    "location": "Chennai, India (Open to Remote / Relocation)",
+    "linkedin": "https://www.linkedin.com/in/ragilimmanuvel",
+    "github": "https://github.com/ragilimmanuvel",
+    "portfolio": "https://ragil-portfolio-site.vercel.app/",
+    "notice_period": "Immediate / 2 weeks",
+    "expected_ctc": "Open to competitive market rate / Negotiable",
+    "work_authorization": "Authorized to work in India / Open to Remote global roles and Visa Sponsorship",
+    "domain_focus": "Priority #1: Healthcare Analytics & Diagnostics (Neuberg Diagnostics, 2+ Years) · Cross-Industry: Real Estate AI Automation (DAC Developers), FinTech SQL Analytics, LangGraph Agents, and Enterprise BI"
+  },
+  "skills": {
+    "healthcare_and_diagnostics": [
+      "Healthcare Operations Intelligence & TAT Optimization",
+      "Diagnostic Center Performance & Laboratory Reporting",
+      "EHR/EMR & Health App Backend Validation (Neu5R)",
+      "Clinical Data ETL & Audit Workflows",
+      "Net Promoter Score (NPS) Patient Feedback Portals",
+      "CAPA Tracking & SLA Monitoring in Healthcare",
+      "HIPAA / PHI Security Awareness & Compliance"
+    ],
+    "sql_and_database_management": [
+      "MS SQL Server (T-SQL, SSMS)",
+      "MySQL",
+      "Azure Data Studio",
+      "PostgreSQL",
+      "Database Architecture & Query Optimization",
+      "ETL Pipeline Development"
+    ],
+    "business_intelligence_and_analytics": [
+      "Power BI Premium (DAX, Semantic Data Modeling, Power Query)",
+      "Tableau",
+      "Zoho Analytics",
+      "Advanced Excel & Financial Modeling",
+      "Pandas, NumPy, Matplotlib",
+      "Executive C-Suite KPI Architecture"
+    ],
+    "ai_machine_learning_and_vision": [
+      "Autonomous AI Agents (LangGraph, LangChain)",
+      "Ultralytics YOLO v8 (Real-Time Object & Face Detection)",
+      "OpenCV Computer Vision Pipelines",
+      "FastAPI Microservices",
+      "Machine Learning & Predictive Modeling",
+      "Streamlit",
+      "TensorFlow"
+    ],
+    "automation_and_platforms": [
+      "Workflow Automation (Python, Power Automate)",
+      "WhatsApp Business API / Group Automations",
+      "RESTful API Integration (Postman, Requests)",
+      "Azure Synapse & Cloud Services",
+      "Databricks & PySpark",
+      "Git & GitHub",
+      "JIRA & Agile SOP Documentation"
+    ]
+  },
+  "experience": [
+    {
+      "role": "Senior AI Automations",
+      "company": "DAC Developers",
+      "location": "Chennai, India",
+      "duration": "07/2026 – Present",
+      "bullets": [
+        "Engineered end-to-end WhatsApp automation that parses incoming booking details from group chats and logs them directly into a centralized data pipeline, eliminating manual entry and transcription errors.",
+        "Designed and deployed interactive Power BI enterprise dashboards providing executive visibility into inventory availability, marketing spend, and sales velocity for real-time decision making.",
+        "Digitalized property site inspection workflows, replacing paper-based processes with structured digital mobile forms for consistent field data capture.",
+        "Streamlined customer booking intake by replacing manual paperwork with automated digital booking workflows, accelerating cycle times.",
+        "Developed team meeting hall booking and resource allocation portal, simplifying scheduling and eliminating resource contention."
+      ]
+    },
+    {
+      "role": "Junior Data Analyst (Healthcare & Diagnostics)",
+      "company": "Neuberg Diagnostics",
+      "location": "Chennai, India",
+      "duration": "12/2024 – 03/2026",
+      "bullets": [
+        "Architected regional, center-wise, and city-wise diagnostic performance dashboards on a unified semantic model with automated subscription alerts for business unit heads.",
+        "Automated diagnostic sales performance, staff attendance, revenue analysis, and P&L summaries using SQL, elevating operational efficiency by 10%.",
+        "Executed resilient ETL pipelines between production and disaster recovery backup servers, guaranteeing healthcare diagnostic data reliability.",
+        "Built an end-to-end Net Promoter Score (NPS) patient feedback and action management portal using Python and MS SQL, incorporating Root Cause Analysis (RCA), CAPA tracking, and SLA monitoring.",
+        "Configured BI dashboards for patient satisfaction KPIs in Zoho Analytics, enabling Customer Experience teams to track detractors and resolve issues rapidly.",
+        "Engineered an AI-powered CCTV surveillance and operations analytics solution using Python, YOLO v8, and OpenCV with real-time Tableau telemetry, lifting lab operational efficiency by 25%.",
+        "Designed an integrated Digital Marketing and Call Centre intelligence dashboard in Power BI, reducing abandoned patient calls to below 15% and driving an 8% month-over-month increase in digital revenue."
+      ]
+    },
+    {
+      "role": "Data Analyst Intern (Healthcare & Diagnostics)",
+      "company": "Neuberg Diagnostics",
+      "location": "Chennai, India",
+      "duration": "05/2024 – 11/2024",
+      "bullets": [
+        "Rolled out departmental Power BI analytics, automating diagnostic report distribution and cutting delivery turnaround timelines by 35%.",
+        "Optimized semantic data models, improving diagnostic dashboard refresh performance by 50%.",
+        "Refined complex SQL queries across multi-million row clinical and patient datasets to uncover actionable trends for operational leadership.",
+        "Automated weekly Management Information System (MIS) reports using Power BI, saving 10+ hours of manual compilation each week.",
+        "Maintained daily and weekly Turnaround Time (TAT) diagnostic tracking dashboards in Power BI, maintaining strict data accuracy across laboratory networks.",
+        "Conducted backend clinical data validation and feature testing during system rollouts, collaborating with development teams on the Neu5R healthcare application.",
+        "Authored standardized operating procedures (SOPs) and documentation for data validation and reporting workflows."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Healthcare Operations Intelligence & TAT Dashboard",
+      "tech_stack": "Power BI, Databricks, Azure, MS SQL, Python",
+      "bullets": [
+        "Built diagnostic lab turnaround time (TAT) monitoring and operational telemetry across laboratory network, achieving a verified 20% TAT reduction.",
+        "Implemented automated data cleaning and anomaly detection alerting C-suite leaders to diagnostic processing delays."
+      ]
+    },
+    {
+      "name": "AI-Powered Computer Vision Surveillance & Productivity Analytics",
+      "tech_stack": "Python, YOLO v8, OpenCV, Tableau, TensorFlow",
+      "bullets": [
+        "Constructed real-time computer vision surveillance analytics achieving 95% detection accuracy with low inference latency (<20ms).",
+        "Reduced manual facility surveillance monitoring by 70% with automated real-time incident and attendance alerts."
+      ]
+    },
+    {
+      "name": "Healthcare NPS & Patient Experience Management Platform",
+      "tech_stack": "Python, MS SQL, Pandas, Tableau, Zoho Analytics",
+      "bullets": [
+        "Engineered a closed-loop patient feedback system with automated Root Cause Analysis (RCA) and CAPA tracking, driving a +12 point increase in patient NPS."
+      ]
+    },
+    {
+      "name": "Autonomous Multi-Agent Recruitment & Outreach Engine",
+      "tech_stack": "Python, LangGraph, Google Gemini API, Playwright, Browser-Use, Google Sheets",
+      "bullets": [
+        "Architected an autonomous agent that scrapes healthcare JDs, dynamically tailors ATS resumes with zero fabrication, auto-fills application portals, and cold emails hiring HR with tailored attachments."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Engineering (B.E.) in Computer Science and Engineering",
+      "institution": "Rajalakshmi Institute of Technology",
+      "duration": "09/2020 – 05/2024",
+      "location": "Chennai, India",
+      "honors": "Core Focus: Database Architecture, Algorithms, Machine Learning & Operating Systems"
+    }
+  ],
+  "certifications": [
+    "Data Science Methodology – IBM",
+    "SQL and Relational Databases – IBM",
+    "Python for Data Science – IBM",
+    "Excel Skills Job Simulation – JPMorgan Chase",
+    "Cloud Computing Essentials – Naan Mudhalvan",
+    "Certified Risk Management FMEA ISO 31000 Expert – Udemy"
+  ]
+}

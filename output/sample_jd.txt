@@ -1,0 +1,10 @@
+
+                Role: Senior AI Automation Engineer
+                Company: Horizon AI Solutions
+                Location: San Francisco, CA (Remote Friendly)
+                Requirements:
+                - 4+ years building full-stack applications with Python, TypeScript, and FastAPI.
+                - Proven experience with LLM orchestration frameworks such as LangChain and LangGraph.
+                - Strong expertise in browser automation, web scraping (Playwright), and document ingestion.
+                - Hands-on integration of Google APIs (Sheets, Gmail, Cloud Run) and OAuth2 authentication.
+                

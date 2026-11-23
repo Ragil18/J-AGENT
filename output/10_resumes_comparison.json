@@ -1,0 +1,267 @@
+[
+  {
+    "index": 1,
+    "company": "Epic Systems",
+    "role": "EHR Integration & Interoperability Engineer",
+    "score": 91,
+    "summary": "Data & Healthcare Automation Engineer with nearly 2 years of dedicated healthcare analytics experience at Neuberg Diagnostics and enterprise AI automation expertise. Proven track record validating healthcare EHR application backends (Neu5R), architecting HIPAA/PHI-compliant clinical data ETL pipelines, and optimizing diagnostic lab SLAs. Targeting the EHR Integration & Interoperability Engineer role at Epic Systems to drive robust clinical interoperability and workflow reliability.",
+    "primary_skills": [
+      "Healthcare Operations Intelligence & TAT Optimization",
+      "Diagnostic Center Performance & Laboratory Reporting",
+      "EHR/EMR & Health App Backend Validation (Neu5R)",
+      "Clinical Data ETL & Audit Workflows",
+      "Net Promoter Score (NPS) Patient Feedback Portals",
+      "MS SQL Server (T-SQL, SSMS)",
+      "MySQL",
+      "Azure Data Studio"
+    ],
+    "secondary_skills": [
+      "Workflow Automation (Python, Power Automate)",
+      "WhatsApp Business API / Group Automations",
+      "RESTful API Integration (Postman, Requests)",
+      "Power BI Premium (DAX, Semantic Data Modeling, Power Query)",
+      "Tableau",
+      "Zoho Analytics"
+    ],
+    "pdf_path": "D:\\NOV-2026\\TEST-AGENT\\output\\Resume_Epic_Systems_EHR_Integration__Interoperability_Engineer.pdf",
+    "pdf_basename": "Resume_Epic_Systems_EHR_Integration__Interoperability_Engineer.pdf"
+  },
+  {
+    "index": 2,
+    "company": "Athenahealth",
+    "role": "Healthcare API & Cloud Automation Developer",
+    "score": 91,
+    "summary": "Data & Healthcare Automation Engineer with nearly 2 years of dedicated healthcare analytics experience at Neuberg Diagnostics and enterprise AI automation expertise. Proven track record validating healthcare EHR application backends (Neu5R), architecting HIPAA/PHI-compliant clinical data ETL pipelines, and optimizing diagnostic lab SLAs. Targeting the Healthcare API & Cloud Automation Developer role at Athenahealth to drive robust clinical interoperability and workflow reliability.",
+    "primary_skills": [
+      "Healthcare Operations Intelligence & TAT Optimization",
+      "Diagnostic Center Performance & Laboratory Reporting",
+      "EHR/EMR & Health App Backend Validation (Neu5R)",
+      "Clinical Data ETL & Audit Workflows",
+      "Net Promoter Score (NPS) Patient Feedback Portals",
+      "MS SQL Server (T-SQL, SSMS)",
+      "MySQL",
+      "Azure Data Studio"
+    ],
+    "secondary_skills": [
+      "Workflow Automation (Python, Power Automate)",
+      "WhatsApp Business API / Group Automations",
+      "RESTful API Integration (Postman, Requests)",
+      "Power BI Premium (DAX, Semantic Data Modeling, Power Query)",
+      "Tableau",
+      "Zoho Analytics"
+    ],
+    "pdf_path": "D:\\NOV-2026\\TEST-AGENT\\output\\Resume_Athenahealth_Healthcare_API__Cloud_Automation_Developer.pdf",
+    "pdf_basename": "Resume_Athenahealth_Healthcare_API__Cloud_Automation_Developer.pdf"
+  },
+  {
+    "index": 3,
+    "company": "Teladoc Health",
+    "role": "Virtual Care & Telehealth Systems Engineer",
+    "score": 93,
+    "summary": "Data & Healthcare Automation Engineer with nearly 2 years of dedicated healthcare analytics experience at Neuberg Diagnostics and enterprise AI automation expertise. Specialized in deploying production computer vision models (YOLO v8, OpenCV), autonomous AI agent architectures (LangGraph, FastAPI), and automated clinical data pipelines. Targeting Teladoc Health to scale next-generation AI and intelligent healthcare workflows.",
+    "primary_skills": [
+      "Autonomous AI Agents (LangGraph, LangChain)",
+      "Ultralytics YOLO v8 (Real-Time Object & Face Detection)",
+      "OpenCV Computer Vision Pipelines",
+      "FastAPI Microservices",
+      "Healthcare Operations Intelligence & TAT Optimization",
+      "Diagnostic Center Performance & Laboratory Reporting",
+      "EHR/EMR & Health App Backend Validation (Neu5R)"
+    ],
+    "secondary_skills": [
+      "MS SQL Server (T-SQL, SSMS)",
+      "MySQL",
+      "Azure Data Studio",
+      "Workflow Automation (Python, Power Automate)",
+      "WhatsApp Business API / Group Automations",
+      "RESTful API Integration (Postman, Requests)"
+    ],
+    "pdf_path": "D:\\NOV-2026\\TEST-AGENT\\output\\Resume_Teladoc_Health_Virtual_Care__Telehealth_Systems_Engineer.pdf",
+    "pdf_basename": "Resume_Teladoc_Health_Virtual_Care__Telehealth_Systems_Engineer.pdf"
+  },
+  {
+    "index": 4,
+    "company": "Flatiron Health",
+    "role": "Oncology Clinical Data Pipeline Engineer",
+    "score": 92,
+    "summary": "Data & Healthcare Automation Engineer with nearly 2 years of dedicated healthcare analytics experience at Neuberg Diagnostics and enterprise AI automation expertise. Demonstrated expertise executing multi-million row clinical ETL pipelines, optimizing diagnostic turnaround times (TAT by 20%), and maintaining production/disaster recovery data integrity. Ready to deliver scalable clinical data ingestion and analytics infrastructure for Flatiron Health.",
+    "primary_skills": [
+      "MS SQL Server (T-SQL, SSMS)",
+      "MySQL",
+      "Azure Data Studio",
+      "PostgreSQL",
+      "Healthcare Operations Intelligence & TAT Optimization",
+      "Diagnostic Center Performance & Laboratory Reporting",
+      "EHR/EMR & Health App Backend Validation (Neu5R)",
+      "Clinical Data ETL & Audit Workflows"
+    ],
+    "secondary_skills": [
+      "Power BI Premium (DAX, Semantic Data Modeling, Power Query)",
+      "Tableau",
+      "Zoho Analytics",
+      "Workflow Automation (Python, Power Automate)",
+      "WhatsApp Business API / Group Automations",
+      "RESTful API Integration (Postman, Requests)"
+    ],
+    "pdf_path": "D:\\NOV-2026\\TEST-AGENT\\output\\Resume_Flatiron_Health_Oncology_Clinical_Data_Pipeline_Engineer.pdf",
+    "pdf_basename": "Resume_Flatiron_Health_Oncology_Clinical_Data_Pipeline_Engineer.pdf"
+  },
+  {
+    "index": 5,
+    "company": "Tempus AI",
+    "role": "Clinical AI & Data Automation Engineer",
+    "score": 93,
+    "summary": "Data & Healthcare Automation Engineer with nearly 2 years of dedicated healthcare analytics experience at Neuberg Diagnostics and enterprise AI automation expertise. Specialized in deploying production computer vision models (YOLO v8, OpenCV), autonomous AI agent architectures (LangGraph, FastAPI), and automated clinical data pipelines. Targeting Tempus AI to scale next-generation AI and intelligent healthcare workflows.",
+    "primary_skills": [
+      "Autonomous AI Agents (LangGraph, LangChain)",
+      "Ultralytics YOLO v8 (Real-Time Object & Face Detection)",
+      "OpenCV Computer Vision Pipelines",
+      "FastAPI Microservices",
+      "Healthcare Operations Intelligence & TAT Optimization",
+      "Diagnostic Center Performance & Laboratory Reporting",
+      "EHR/EMR & Health App Backend Validation (Neu5R)"
+    ],
+    "secondary_skills": [
+      "MS SQL Server (T-SQL, SSMS)",
+      "MySQL",
+      "Azure Data Studio",
+      "Workflow Automation (Python, Power Automate)",
+      "WhatsApp Business API / Group Automations",
+      "RESTful API Integration (Postman, Requests)"
+    ],
+    "pdf_path": "D:\\NOV-2026\\TEST-AGENT\\output\\Resume_Tempus_AI_Clinical_AI__Data_Automation_Engineer.pdf",
+    "pdf_basename": "Resume_Tempus_AI_Clinical_AI__Data_Automation_Engineer.pdf"
+  },
+  {
+    "index": 6,
+    "company": "Oscar Health",
+    "role": "Claims & Prior-Authorization Automation Engineer",
+    "score": 93,
+    "summary": "Data & Healthcare Automation Engineer with nearly 2 years of dedicated healthcare analytics experience at Neuberg Diagnostics and enterprise AI automation expertise. Specialized in deploying production computer vision models (YOLO v8, OpenCV), autonomous AI agent architectures (LangGraph, FastAPI), and automated clinical data pipelines. Targeting Oscar Health to scale next-generation AI and intelligent healthcare workflows.",
+    "primary_skills": [
+      "Autonomous AI Agents (LangGraph, LangChain)",
+      "Ultralytics YOLO v8 (Real-Time Object & Face Detection)",
+      "OpenCV Computer Vision Pipelines",
+      "FastAPI Microservices",
+      "Healthcare Operations Intelligence & TAT Optimization",
+      "Diagnostic Center Performance & Laboratory Reporting",
+      "EHR/EMR & Health App Backend Validation (Neu5R)"
+    ],
+    "secondary_skills": [
+      "MS SQL Server (T-SQL, SSMS)",
+      "MySQL",
+      "Azure Data Studio",
+      "Workflow Automation (Python, Power Automate)",
+      "WhatsApp Business API / Group Automations",
+      "RESTful API Integration (Postman, Requests)"
+    ],
+    "pdf_path": "D:\\NOV-2026\\TEST-AGENT\\output\\Resume_Oscar_Health_Claims__Prior-Authorization_Automation_Engineer.pdf",
+    "pdf_basename": "Resume_Oscar_Health_Claims__Prior-Authorization_Automation_Engineer.pdf"
+  },
+  {
+    "index": 7,
+    "company": "Ro (Roman Health)",
+    "role": "Digital Health & Telepharmacy Full-Stack Developer",
+    "score": 89,
+    "summary": "Data & Healthcare Automation Engineer with nearly 2 years of dedicated healthcare analytics experience at Neuberg Diagnostics and enterprise AI automation expertise. Experienced in building patient feedback portals (NPS/CAPA), automating customer intake pipelines, and deploying resilient Python microservices with strict HIPAA/PHI security compliance. Excited to advance Ro (Roman Health)'s digital health platform and patient experience.",
+    "primary_skills": [
+      "Healthcare Operations Intelligence & TAT Optimization",
+      "Diagnostic Center Performance & Laboratory Reporting",
+      "EHR/EMR & Health App Backend Validation (Neu5R)",
+      "Clinical Data ETL & Audit Workflows",
+      "Workflow Automation (Python, Power Automate)",
+      "WhatsApp Business API / Group Automations",
+      "RESTful API Integration (Postman, Requests)"
+    ],
+    "secondary_skills": [
+      "Autonomous AI Agents (LangGraph, LangChain)",
+      "Ultralytics YOLO v8 (Real-Time Object & Face Detection)",
+      "OpenCV Computer Vision Pipelines",
+      "MS SQL Server (T-SQL, SSMS)",
+      "MySQL",
+      "Azure Data Studio"
+    ],
+    "pdf_path": "D:\\NOV-2026\\TEST-AGENT\\output\\Resume_Ro_Roman_Health_Digital_Health__Telepharmacy_Full-Stack_Developer.pdf",
+    "pdf_basename": "Resume_Ro_Roman_Health_Digital_Health__Telepharmacy_Full-Stack_Developer.pdf"
+  },
+  {
+    "index": 8,
+    "company": "Cerner (Oracle Health)",
+    "role": "Hospital Data Exchange & Protocol Engineer",
+    "score": 91,
+    "summary": "Data & Healthcare Automation Engineer with nearly 2 years of dedicated healthcare analytics experience at Neuberg Diagnostics and enterprise AI automation expertise. Proven track record validating healthcare EHR application backends (Neu5R), architecting HIPAA/PHI-compliant clinical data ETL pipelines, and optimizing diagnostic lab SLAs. Targeting the Hospital Data Exchange & Protocol Engineer role at Cerner (Oracle Health) to drive robust clinical interoperability and workflow reliability.",
+    "primary_skills": [
+      "Healthcare Operations Intelligence & TAT Optimization",
+      "Diagnostic Center Performance & Laboratory Reporting",
+      "EHR/EMR & Health App Backend Validation (Neu5R)",
+      "Clinical Data ETL & Audit Workflows",
+      "Net Promoter Score (NPS) Patient Feedback Portals",
+      "MS SQL Server (T-SQL, SSMS)",
+      "MySQL",
+      "Azure Data Studio"
+    ],
+    "secondary_skills": [
+      "Workflow Automation (Python, Power Automate)",
+      "WhatsApp Business API / Group Automations",
+      "RESTful API Integration (Postman, Requests)",
+      "Power BI Premium (DAX, Semantic Data Modeling, Power Query)",
+      "Tableau",
+      "Zoho Analytics"
+    ],
+    "pdf_path": "D:\\NOV-2026\\TEST-AGENT\\output\\Resume_Cerner_Oracle_Health_Hospital_Data_Exchange__Protocol_Engineer.pdf",
+    "pdf_basename": "Resume_Cerner_Oracle_Health_Hospital_Data_Exchange__Protocol_Engineer.pdf"
+  },
+  {
+    "index": 9,
+    "company": "Cedar",
+    "role": "Patient Financial & Billing Experience Engineer",
+    "score": 91,
+    "summary": "Data & Healthcare Automation Engineer with nearly 2 years of dedicated healthcare analytics experience at Neuberg Diagnostics and enterprise AI automation expertise. Proven track record validating healthcare EHR application backends (Neu5R), architecting HIPAA/PHI-compliant clinical data ETL pipelines, and optimizing diagnostic lab SLAs. Targeting the Patient Financial & Billing Experience Engineer role at Cedar to drive robust clinical interoperability and workflow reliability.",
+    "primary_skills": [
+      "Healthcare Operations Intelligence & TAT Optimization",
+      "Diagnostic Center Performance & Laboratory Reporting",
+      "EHR/EMR & Health App Backend Validation (Neu5R)",
+      "Clinical Data ETL & Audit Workflows",
+      "Net Promoter Score (NPS) Patient Feedback Portals",
+      "MS SQL Server (T-SQL, SSMS)",
+      "MySQL",
+      "Azure Data Studio"
+    ],
+    "secondary_skills": [
+      "Workflow Automation (Python, Power Automate)",
+      "WhatsApp Business API / Group Automations",
+      "RESTful API Integration (Postman, Requests)",
+      "Power BI Premium (DAX, Semantic Data Modeling, Power Query)",
+      "Tableau",
+      "Zoho Analytics"
+    ],
+    "pdf_path": "D:\\NOV-2026\\TEST-AGENT\\output\\Resume_Cedar_Patient_Financial__Billing_Experience_Engineer.pdf",
+    "pdf_basename": "Resume_Cedar_Patient_Financial__Billing_Experience_Engineer.pdf"
+  },
+  {
+    "index": 10,
+    "company": "Komodo Health",
+    "role": "Healthcare Map & Clinical Data Pipeline Engineer",
+    "score": 93,
+    "summary": "Data & Healthcare Automation Engineer with nearly 2 years of dedicated healthcare analytics experience at Neuberg Diagnostics and enterprise AI automation expertise. Specialized in deploying production computer vision models (YOLO v8, OpenCV), autonomous AI agent architectures (LangGraph, FastAPI), and automated clinical data pipelines. Targeting Komodo Health to scale next-generation AI and intelligent healthcare workflows.",
+    "primary_skills": [
+      "Autonomous AI Agents (LangGraph, LangChain)",
+      "Ultralytics YOLO v8 (Real-Time Object & Face Detection)",
+      "OpenCV Computer Vision Pipelines",
+      "FastAPI Microservices",
+      "Healthcare Operations Intelligence & TAT Optimization",
+      "Diagnostic Center Performance & Laboratory Reporting",
+      "EHR/EMR & Health App Backend Validation (Neu5R)"
+    ],
+    "secondary_skills": [
+      "MS SQL Server (T-SQL, SSMS)",
+      "MySQL",
+      "Azure Data Studio",
+      "Workflow Automation (Python, Power Automate)",
+      "WhatsApp Business API / Group Automations",
+      "RESTful API Integration (Postman, Requests)"
+    ],
+    "pdf_path": "D:\\NOV-2026\\TEST-AGENT\\output\\Resume_Komodo_Health_Healthcare_Map__Clinical_Data_Pipeline_Engineer.pdf",
+    "pdf_basename": "Resume_Komodo_Health_Healthcare_Map__Clinical_Data_Pipeline_Engineer.pdf"
+  }
+]

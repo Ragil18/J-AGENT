@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ basics.name }} - Resume</title>
+  <style>
+    @page {
+      size: letter;
+      margin: 14mm 16mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #1a1a1a;
+      background-color: #ffffff;
+      line-height: 1.38;
+      font-size: 10pt;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      border-bottom: 2px solid #2563eb;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    h1.name {
+      font-size: 20pt;
+      font-weight: 700;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .contact-info {
+      font-size: 9pt;
+      color: #475569;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px 12px;
+    }
+
+    .contact-info a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    /* Section Headings */
+    section {
+      margin-bottom: 11px;
+    }
+
+    h2.section-title {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #1e3a8a;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      border-bottom: 1px solid #cbd5e1;
+      padding-bottom: 2px;
+      margin-bottom: 6px;
+    }
+
+    /* Summary */
+    .summary-text {
+      font-size: 9.5pt;
+      color: #334155;
+      text-align: justify;
+      margin-bottom: 4px;
+    }
+
+    /* Skills */
+    .skills-block {
+      font-size: 9.5pt;
+      color: #1e293b;
+    }
+
+    .skills-row {
+      margin-bottom: 3px;
+    }
+
+    .skills-label {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    /* Experience & Projects */
+    .item-entry {
+      margin-bottom: 8px;
+      page-break-inside: avoid;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    .item-title-group {
+      font-size: 10pt;
+    }
+
+    .item-title {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .item-subtitle {
+      font-weight: 600;
+      color: #3b82f6;
+    }
+
+    .item-date-loc {
+      font-size: 8.5pt;
+      font-weight: 500;
+      color: #64748b;
+      text-align: right;
+    }
+
+    .item-tech-stack {
+      font-size: 8.5pt;
+      font-style: italic;
+      color: #475569;
+      margin-bottom: 3px;
+    }
+
+    /* Bullets */
+    ul.bullet-list {
+      list-style-type: disc;
+      margin-left: 18px;
+      padding-left: 0;
+    }
+
+    ul.bullet-list li {
+      font-size: 9.2pt;
+      color: #334155;
+      margin-bottom: 2px;
+      line-height: 1.35;
+    }
+
+    /* Education & Certifications */
+    .edu-entry, .cert-entry {
+      font-size: 9.5pt;
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <h1 class="name">{{ basics.name }}</h1>
+      <div class="contact-info">
+        {% if basics.location %}<span>{{ basics.location }}</span> &bull;{% endif %}
+        {% if basics.phone %}<span>{{ basics.phone }}</span> &bull;{% endif %}
+        {% if basics.email %}<span><a href="mailto:{{ basics.email }}">{{ basics.email }}</a></span> &bull;{% endif %}
+        {% if basics.linkedin %}<span><a href="{{ basics.linkedin }}">LinkedIn</a></span> &bull;{% endif %}
+        {% if basics.github %}<span><a href="{{ basics.github }}">GitHub</a></span>{% endif %}
+        {% if basics.portfolio %} &bull; <span><a href="{{ basics.portfolio }}">Portfolio</a></span>{% endif %}
+      </div>
+    </header>
+
+    <!-- Professional Summary -->
+    {% if tailored.tailored_summary %}
+    <section>
+      <h2 class="section-title">Professional Summary</h2>
+      <p class="summary-text">{{ tailored.tailored_summary }}</p>
+    </section>
+    {% endif %}
+
+    <!-- Technical Skills -->
+    <section>
+      <h2 class="section-title">Technical Competencies</h2>
+      <div class="skills-block">
+        {% if tailored.skills.primary_matched and tailored.skills.primary_matched|length > 0 %}
+        <div class="skills-row">
+          <span class="skills-label">Core Target Strengths:</span>
+          <span>{{ tailored.skills.primary_matched | join(" &bull; ") }}</span>
+        </div>
+        {% endif %}
+        {% if tailored.skills.secondary and tailored.skills.secondary|length > 0 %}
+        <div class="skills-row">
+          <span class="skills-label">Supporting Technologies:</span>
+          <span>{{ tailored.skills.secondary | join(" &bull; ") }}</span>
+        </div>
+        {% endif %}
+      </div>
+    </section>
+
+    <!-- Professional Experience -->
+    {% if tailored.experience and tailored.experience|length > 0 %}
+    <section>
+      <h2 class="section-title">Professional Experience</h2>
+      {% for exp in tailored.experience %}
+      <div class="item-entry">
+        <div class="item-header">
+          <div class="item-title-group">
+            <span class="item-title">{{ exp.role }}</span>
+            <span class="item-subtitle"> | {{ exp.company }}</span>
+          </div>
+          <div class="item-date-loc">
+            <span>{{ exp.duration }}</span>
+            {% if exp.location %} | <span>{{ exp.location }}</span>{% endif %}
+          </div>
+        </div>
+        <ul class="bullet-list">
+          {% for bullet in exp.bullets %}
+          <li>{{ bullet }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    <!-- Selected Projects -->
+    {% if tailored.projects and tailored.projects|length > 0 %}
+    <section>
+      <h2 class="section-title">Featured Engineering Projects</h2>
+      {% for proj in tailored.projects %}
+      <div class="item-entry">
+        <div class="item-header">
+          <div class="item-title-group">
+            <span class="item-title">{{ proj.name }}</span>
+          </div>
+        </div>
+        {% if proj.tech_stack %}
+        <div class="item-tech-stack">Tech Stack: {{ proj.tech_stack }}</div>
+        {% endif %}
+        <ul class="bullet-list">
+          {% for bullet in proj.bullets %}
+          <li>{{ bullet }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    <!-- Education & Certifications -->
+    {% if education or certifications %}
+    <section>
+      <h2 class="section-title">Education & Certifications</h2>
+      {% if education %}
+      {% for edu in education %}
+      <div class="edu-entry">
+        <div class="item-header">
+          <div class="item-title-group">
+            <span class="item-title">{{ edu.degree }}</span> &mdash; {{ edu.institution }}
+            {% if edu.honors %}<span style="color:#64748b;"> ({{ edu.honors }})</span>{% endif %}
+          </div>
+          <div class="item-date-loc">{{ edu.duration }}</div>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+
+      {% if certifications %}
+      <div class="cert-entry" style="margin-top: 4px;">
+        <span class="skills-label">Certifications:</span>
+        <span>{{ certifications | join(" &bull; ") }}</span>
+      </div>
+      {% endif %}
+    </section>
+    {% endif %}
+
+  </div>
+</body>
+</html>
