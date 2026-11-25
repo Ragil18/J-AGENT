@@ -40,6 +40,7 @@ from cold_email_agent import (
     run_cold_outreach,
 )
 from email_tracker import run_email_tracker, send_desktop_notification, send_telegram_alert
+from job_finder import discover_live_jobs
 from sheets_manager import get_sheets_manager
 
 load_dotenv()
@@ -239,11 +240,15 @@ if __name__ == "__main__":
     )
     parser.add_argument("--daemon", action="store_true", help="Run continuously in 24/7 background mode")
     parser.add_argument("--interval", type=int, default=900, help="Daemon polling interval in seconds (default: 900s)")
+    parser.add_argument("--discover", action="store_true", help="Discover live active jobs (Healthcare #1 + Cross-Industry) and update jobs.txt")
     parser.add_argument("--test", action="store_true", help="Run automated test using sample JD")
 
     args = parser.parse_args()
 
-    if args.daemon:
+    if args.discover:
+        jobs = discover_live_jobs(max_results=15, write_to_jobs_txt=True)
+        print(f"\nDiscovered {len(jobs)} live jobs and updated jobs.txt!")
+    elif args.daemon:
         asyncio.run(
             run_continuous_daemon(
                 poll_interval=args.interval,

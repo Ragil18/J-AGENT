@@ -19,9 +19,78 @@ import os
 from pathlib import Path
 import re
 import smtplib
+import socket
+import subprocess
 import time
 from typing import Any, Dict, List, Literal, Optional
 from urllib.parse import urlparse
+
+OUTREACH_LEDGER_PATH = Path("output/sent_outreach_ledger.json")
+
+
+def verify_email_domain_mx(email_address: str) -> bool:
+    """Upgrade #5A: Verify recipient domain has valid DNS/MX records before sending to avoid bounces."""
+    if not email_address or "@" not in email_address:
+        return False
+    domain = email_address.split("@")[-1].strip().lower()
+    if not domain or "." not in domain:
+        return False
+
+    # 1. Try DNS MX lookup via nslookup (cross-platform, zero external dependencies)
+    try:
+        proc = subprocess.run(
+            ["nslookup", "-type=mx", domain],
+            capture_output=True,
+            text=True,
+            timeout=5,
+        )
+        out = (proc.stdout or "").lower()
+        if "mail exchanger" in out or "mx preference" in out:
+            return True
+    except Exception:
+        pass
+
+    # 2. Fallback: verify domain resolves via standard DNS A/AAAA record
+    try:
+        socket.getaddrinfo(domain, 25)
+        return True
+    except Exception:
+        return False
+
+
+def is_already_contacted(company_name: str, recipient_email: str) -> bool:
+    """Upgrade #5B: Prevent duplicate outreach to the same company or recruiter email."""
+    if not OUTREACH_LEDGER_PATH.exists():
+        return False
+    try:
+        ledger = json.loads(OUTREACH_LEDGER_PATH.read_text(encoding="utf-8"))
+        comp_l = company_name.strip().lower()
+        email_l = recipient_email.strip().lower()
+        for entry in ledger:
+            if entry.get("recipient_email", "").lower() == email_l or entry.get("company", "").lower() == comp_l:
+                return True
+    except Exception:
+        return False
+    return False
+
+
+def record_outreach_ledger(company_name: str, role_title: str, recipient_email: str, status: str) -> None:
+    """Persist dispatched outreach into deduplication ledger."""
+    ledger: List[Dict[str, Any]] = []
+    if OUTREACH_LEDGER_PATH.exists():
+        try:
+            ledger = json.loads(OUTREACH_LEDGER_PATH.read_text(encoding="utf-8"))
+        except Exception:
+            ledger = []
+    ledger.append({
+        "timestamp": datetime.now().isoformat(),
+        "company": company_name,
+        "role": role_title,
+        "recipient_email": recipient_email,
+        "status": status,
+    })
+    OUTREACH_LEDGER_PATH.parent.mkdir(parents=True, exist_ok=True)
+    OUTREACH_LEDGER_PATH.write_text(json.dumps(ledger, indent=2), encoding="utf-8")
 
 from dotenv import load_dotenv
 from langchain_core.messages import HumanMessage, SystemMessage
@@ -481,6 +550,16 @@ async def run_cold_outreach(
         logger.warning(f"No contacts discovered for {company_name}.")
         return {"status": "No Contacts Found", "dispatched": 0}
 
+    # Upgrade #5A: Verify email domain MX/DNS record to prevent bounces
+    if not verify_email_domain_mx(primary_contact.email):
+        logger.warning(f"MX/DNS verification failed for '{primary_contact.email}'. Skipping dispatch to protect sender reputation.")
+        return {"status": "Skipped - Invalid Email Domain", "recipient": primary_contact.email, "dispatched": 0}
+
+    # Upgrade #5B: Anti-Duplicate Outreach Check
+    if mode in ("send", "draft") and is_already_contacted(company_name, primary_contact.email):
+        logger.info(f"Duplicate outreach prevented: Already contacted {company_name} ({primary_contact.email}).")
+        return {"status": "Skipped - Already Contacted", "recipient": primary_contact.email, "dispatched": 0}
+
     # 3. Generate dynamic cold email matching the company and tailored resume
     draft = generate_cold_email(
         company_name=company_name,
@@ -520,6 +599,9 @@ async def run_cold_outreach(
             logger.info("Falling back to local draft logging.")
     elif mode == "send":
         success = EmailDispatcher.send_via_smtp(draft, pdf_path=pdf_path)
+
+    if success:
+        record_outreach_ledger(company_name, role_title, draft.recipient_email, f"Dispatched ({mode})")
 
     # 5. Record/update in application tracker
     sheets_mgr = get_sheets_manager()

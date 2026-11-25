@@ -356,6 +356,34 @@ def tailor_resume_node(state: AgentState) -> Dict[str, Any]:
 
     logger.info(f"Tailored Resume Output: Company='{tailored_output.company_name}', Role='{tailored_output.role_title}', MatchScore={tailored_output.match_score}")
 
+    # ------------------------------------------------------------------
+    # UPGRADE #2: Smart Experience & Location Hard-Constraint Filter
+    # ------------------------------------------------------------------
+    constraint_check = check_hard_constraints(
+        role_title=tailored_output.role_title,
+        jd_text=jd_text,
+    )
+    if not constraint_check["passed"]:
+        logger.warning(f"Hard-Constraint Filter Rejected Job: {constraint_check['reason']}")
+        tailored_output.match_score = min(tailored_output.match_score, 40)
+        tailored_output.missing_critical_skills.append(f"Constraint Mismatch: {constraint_check['reason']}")
+
+    # ------------------------------------------------------------------
+    # UPGRADE #3: 2-Pass Anti-Hallucination Fact-Check Guard
+    # ------------------------------------------------------------------
+    tailored_output, stripped_items = verify_zero_fabrication(tailored_output, master_profile)
+    if stripped_items:
+        logger.info(f"Anti-Hallucination Guard stripped {len(stripped_items)} unverified item(s): {stripped_items}")
+
+    # ------------------------------------------------------------------
+    # UPGRADE #4A: Explicit ATS Keyword Coverage Audit
+    # ------------------------------------------------------------------
+    kw_audit = audit_ats_keywords(tailored_output, jd_text)
+    logger.info(
+        f"ATS Keyword Coverage: {kw_audit['coverage_pct']}% "
+        f"({len(kw_audit['matched'])}/{kw_audit['total']} JD keywords matched)"
+    )
+
     return {
         "master_profile": master_profile,
         "tailored_resume": tailored_output.model_dump(),
@@ -363,6 +391,115 @@ def tailor_resume_node(state: AgentState) -> Dict[str, Any]:
         "missing_critical_skills": tailored_output.missing_critical_skills,
         "company_name": tailored_output.company_name,
         "role_title": tailored_output.role_title,
+    }
+
+
+# ====================================================================
+# Accuracy Guardrails: Hard Constraints, Anti-Hallucination, ATS Audit
+# ====================================================================
+
+def check_hard_constraints(role_title: str, jd_text: str, max_allowed_years: int = 4) -> Dict[str, Any]:
+    """Upgrade #2: Reject incompatible senior/lead roles (>4 yrs exp) or US-only onsite restrictions."""
+    title_l = (role_title or "").lower()
+    jd_l = (jd_text or "").lower()
+
+    # 1. Executive / Senior-Lead Title Filter
+    blocked_titles = ["principal", "director", "vice president", "vp ", "head of", "chief ", "senior manager", "sr. manager", "staff engineer"]
+    for bt in blocked_titles:
+        if bt in title_l:
+            return {"passed": False, "reason": f"Title '{role_title}' exceeds candidate experience band (0-3 yrs)"}
+
+    # 2. Required Years of Experience Extraction (e.g. "5+ years", "minimum 7 years")
+    exp_matches = re.findall(r"(?:minimum|at least|requires?|with)?\s*(\d{1,2})\s*\+?\s*(?:to\s*\d{1,2}\s*)?years?\s+(?:of\s+)?(?:relevant\s+|professional\s+|hands-on\s+|work\s+)?experience", jd_l)
+    for m in exp_matches:
+        yrs = int(m)
+        if max_allowed_years < yrs <= 20:
+            return {"passed": False, "reason": f"Requires {yrs}+ years experience (max threshold: {max_allowed_years})"}
+
+    # 3. Location & Work Authorization Compatibility Filter
+    us_only_phrases = [
+        "us citizenship required",
+        "u.s. citizen only",
+        "must be authorized to work in the united states without sponsorship",
+        "no visa sponsorship",
+        "active security clearance",
+        "must reside in the united states",
+    ]
+    for phrase in us_only_phrases:
+        if phrase in jd_l:
+            return {"passed": False, "reason": f"Incompatible authorization/location requirement: '{phrase}'"}
+
+    return {"passed": True, "reason": "All experience and location constraints satisfied"}
+
+
+def verify_zero_fabrication(
+    tailored: TailoredResumeOutput,
+    master_profile: Dict[str, Any],
+) -> tuple[TailoredResumeOutput, List[str]]:
+    """Upgrade #3: 2-Pass programmatic fact-checker against master_profile.json."""
+    stripped: List[str] = []
+
+    # Build canonical verified corpus from master_profile.json
+    verified_blob = json.dumps(master_profile).lower()
+    verified_companies = {exp["company"].lower(): exp for exp in master_profile.get("experience", [])}
+
+    # 1. Verify every experience entry maps to a real company & authentic dates
+    verified_experience: List[TailoredExperienceRole] = []
+    for exp in tailored.experience:
+        comp_l = exp.company.lower()
+        if comp_l in verified_companies:
+            truth = verified_companies[comp_l]
+            # Lock authentic duration and company spelling
+            exp.company = truth["company"]
+            exp.duration = truth["duration"]
+            verified_experience.append(exp)
+        else:
+            stripped.append(f"Unverified company: {exp.company}")
+
+    if verified_experience:
+        tailored.experience = verified_experience
+
+    # 2. Verify skills exist in master_profile (allow exact or substring match against profile corpus)
+    def filter_skills(skill_list: List[str]) -> List[str]:
+        clean = []
+        for s in skill_list:
+            tokens = [tok for tok in re.split(r"[^a-z0-9+#]+", s.lower()) if len(tok) >= 2]
+            if not tokens or any(tok in verified_blob for tok in tokens):
+                clean.append(s)
+            else:
+                stripped.append(f"Unverified skill: {s}")
+        return clean
+
+    tailored.skills.primary_matched = filter_skills(tailored.skills.primary_matched)
+    tailored.skills.secondary = filter_skills(tailored.skills.secondary)
+
+    return tailored, stripped
+
+
+def audit_ats_keywords(tailored: TailoredResumeOutput, jd_text: str) -> Dict[str, Any]:
+    """Upgrade #4A: Measure exact ATS keyword coverage of tailored resume vs JD."""
+    common_ats_terms = [
+        "python", "sql", "t-sql", "postgresql", "mysql", "power bi", "dax", "tableau",
+        "etl", "fastapi", "databricks", "azure", "hipaa", "phi", "ehr", "emr", "hl7", "fhir",
+        "clinical", "healthcare", "automation", "langgraph", "langchain", "opencv", "yolo",
+        "rest", "api", "dashboard", "kpi", "tat", "sla", "capa", "git", "excel", "pandas",
+    ]
+    jd_l = (jd_text or "").lower()
+    resume_l = json.dumps(tailored.model_dump()).lower()
+
+    jd_terms = [t for t in common_ats_terms if re.search(rf"\b{re.escape(t)}\b", jd_l)]
+    if not jd_terms:
+        return {"coverage_pct": 100, "matched": [], "missing": [], "total": 0}
+
+    matched = [t for t in jd_terms if t in resume_l]
+    missing = [t for t in jd_terms if t not in resume_l]
+    coverage = int(round((len(matched) / len(jd_terms)) * 100))
+
+    return {
+        "coverage_pct": coverage,
+        "matched": matched,
+        "missing": missing,
+        "total": len(jd_terms),
     }
 
 
@@ -408,16 +545,37 @@ async def generate_pdf_node(state: AgentState) -> Dict[str, Any]:
     temp_html_path = OUTPUT_DIR / f"temp_{company}_{role}.html"
     temp_html_path.write_text(html_content, encoding="utf-8")
 
-    # Render to PDF via Playwright
+    # Render to PDF via Playwright with Upgrade #4B: Automatic 1-Page ATS Fit Check
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
-        page = await browser.new_page()
+        page = await browser.new_page(viewport={"width": 816, "height": 1056})
         await page.goto(f"file:///{temp_html_path.resolve().as_posix()}", wait_until="load")
+
+        # Measure rendered height against US Letter printable area (~950px at 96dpi with 14mm margins)
+        scroll_height = await page.evaluate("() => document.body.scrollHeight")
+        margin_mm = "14mm"
+        if scroll_height > 955:
+            logger.info(f"1-Page ATS Fit: Content height {scroll_height}px > 955px. Applying compact single-page scaling...")
+            await page.add_style_tag(content="""
+                @page { margin: 10mm 13mm !important; }
+                body { font-size: 9.1pt !important; line-height: 1.25 !important; }
+                header { margin-bottom: 7px !important; padding-bottom: 5px !important; }
+                h1.name { font-size: 17pt !important; }
+                section { margin-bottom: 6px !important; }
+                h2.section-title { font-size: 10pt !important; margin-bottom: 4px !important; }
+                .item-entry { margin-bottom: 5px !important; }
+                ul.bullet-list li { font-size: 8.6pt !important; line-height: 1.22 !important; margin-bottom: 1px !important; }
+            """)
+            margin_mm = "10mm"
+            final_height = await page.evaluate("() => document.body.scrollHeight")
+            logger.info(f"1-Page ATS Fit: Compact height adjusted to {final_height}px.")
+
         await page.pdf(
             path=str(pdf_path.resolve()),
             format="Letter",
             print_background=True,
-            margin={"top": "14mm", "bottom": "14mm", "left": "16mm", "right": "16mm"},
+            margin={"top": margin_mm, "bottom": margin_mm, "left": "13mm", "right": "13mm"},
+            page_ranges="1",
         )
         await browser.close()
 

@@ -10,7 +10,10 @@ from __future__ import annotations
 
 import argparse
 import base64
-from datetime import datetime
+from datetime import datetime, timedelta
+import email as email_lib
+from email.header import decode_header
+import imaplib
 import json
 import logging
 import os
@@ -152,25 +155,110 @@ def send_telegram_alert(message: str) -> bool:
 # ====================================================================
 
 class GmailClient:
-    """Handles interaction with Gmail API."""
+    """Handles interaction with Gmail via OAuth API OR Zero-OAuth Gmail IMAP (App Password)."""
 
     def __init__(self):
         self.creds = get_google_credentials()
         self.service = None
+        self.imap_user = os.getenv("SMTP_USER") or os.getenv("GMAIL_ADDRESS")
+        self.imap_pass = os.getenv("SMTP_PASSWORD") or os.getenv("GMAIL_APP_PASSWORD")
+        self.imap_host = os.getenv("IMAP_HOST", "imap.gmail.com")
+        self.mode = "offline"
+
         if self.creds:
             try:
                 self.service = build("gmail", "v1", credentials=self.creds)
-                logger.info("Connected to Gmail API.")
+                self.mode = "oauth"
+                logger.info("Connected to Gmail API (OAuth).")
             except Exception as e:
-                logger.warning(f"Failed to build Gmail service: {e}")
+                logger.warning(f"Failed to build Gmail OAuth service: {e}")
+
+        if self.mode == "offline" and self.imap_user and self.imap_pass:
+            self.mode = "imap"
+            logger.info(f"Using Zero-OAuth Gmail IMAP mode for {self.imap_user}.")
 
     def is_available(self) -> bool:
-        return self.service is not None
+        return self.mode in ("oauth", "imap")
+
+    @staticmethod
+    def _decode_mime_header(value: str) -> str:
+        if not value:
+            return ""
+        parts = decode_header(value)
+        decoded = []
+        for part, enc in parts:
+            if isinstance(part, bytes):
+                decoded.append(part.decode(enc or "utf-8", errors="replace"))
+            else:
+                decoded.append(str(part))
+        return "".join(decoded)
+
+    def _search_via_imap(self, tracked_companies: List[str], days_back: int = 7) -> List[Dict[str, Any]]:
+        """Upgrade #6: Zero-OAuth Gmail inbox scan using standard IMAP + App Password."""
+        email_details: List[Dict[str, Any]] = []
+        try:
+            mail = imaplib.IMAP4_SSL(self.imap_host, 993)
+            mail.login(self.imap_user, self.imap_pass)
+            mail.select("INBOX")
+
+            since_date = (datetime.now() - timedelta(days=days_back)).strftime("%d-%b-%Y")
+            status, data = mail.search(None, f'(SINCE "{since_date}")')
+            if status != "OK" or not data or not data[0]:
+                mail.logout()
+                return []
+
+            msg_nums = data[0].split()[-40:]  # Inspect latest 40 messages from past 7 days
+            keywords = [c.lower() for c in tracked_companies if c] + [d.lower() for d in ATS_DOMAINS]
+
+            for num in reversed(msg_nums):
+                res_status, msg_data = mail.fetch(num, "(RFC822.HEADER BODY.PEEK[TEXT]<0.1200>)")
+                if res_status != "OK" or not msg_data:
+                    continue
+
+                raw_header = b""
+                raw_snippet = b""
+                for part in msg_data:
+                    if isinstance(part, tuple):
+                        meta = part[0].decode(errors="ignore").upper()
+                        if "HEADER" in meta:
+                            raw_header = part[1]
+                        else:
+                            raw_snippet = part[1]
+
+                parsed = email_lib.message_from_bytes(raw_header)
+                subject = self._decode_mime_header(parsed.get("Subject", "(No Subject)"))
+                sender = self._decode_mime_header(parsed.get("From", "Unknown"))
+                date_hdr = parsed.get("Date", "")
+                snippet = raw_snippet.decode("utf-8", errors="ignore").replace("\r", " ").replace("\n", " ").strip()[:500]
+
+                combined = f"{subject} {sender} {snippet}".lower()
+                if keywords and not any(k in combined for k in keywords):
+                    continue
+
+                msg_id = num.decode()
+                email_details.append({
+                    "id": msg_id,
+                    "thread_id": msg_id,
+                    "thread_link": "https://mail.google.com/mail/u/0/#inbox",
+                    "subject": subject,
+                    "from": sender,
+                    "date": date_hdr,
+                    "snippet": snippet,
+                })
+
+            mail.logout()
+            logger.info(f"IMAP scan retrieved {len(email_details)} matching recruitment email(s).")
+        except Exception as e:
+            logger.error(f"Gmail IMAP scan failed: {e}")
+        return email_details
 
     def search_recent_recruiter_emails(self, tracked_companies: List[str]) -> List[Dict[str, Any]]:
         """Query Gmail for recent emails matching tracked companies or ATS domains."""
+        if self.mode == "imap":
+            return self._search_via_imap(tracked_companies)
+
         if not self.service:
-            logger.warning("Gmail service is unavailable. Please authenticate via credentials.json.")
+            logger.warning("Gmail service is unavailable. Set SMTP_USER & SMTP_PASSWORD in .env for IMAP, or add credentials.json.")
             return []
 
         # Build search query: newer than 7 days, matching company names or standard ATS senders
@@ -312,6 +400,7 @@ def rule_based_fallback_classification(
         summary = f"Application officially received and under review by {matched}."
     else:
         summary = f"General communication received from {matched}."
+    else: 
 
     return EmailClassification(
         is_job_update=is_update,

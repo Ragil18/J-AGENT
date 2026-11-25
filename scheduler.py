@@ -26,6 +26,7 @@ from apply_agent import run_application_agent
 from autopilot import process_single_job_fully_automated
 from cold_email_agent import run_cold_outreach
 from email_tracker import run_email_tracker
+from job_finder import discover_live_jobs
 from sheets_manager import get_sheets_manager
 
 load_dotenv()
@@ -164,11 +165,26 @@ def dashboard():
                 <form action="/trigger-scan" method="post" style="display:inline;">
                     <button type="submit">Scan Inbox Now</button>
                 </form>
+                <form action="/discover-jobs" method="post" style="display:inline;">
+                    <button type="submit" style="background: #059669;">Discover Live Jobs</button>
+                </form>
             </div>
         </div>
     </body>
     </html>"""
     return html
+
+
+@app.post("/discover-jobs")
+def trigger_discover_jobs(limit: int = 15, update_queue: bool = True):
+    """Discover fresh live Healthcare (#1) + Cross-Industry jobs via free public ATS APIs."""
+    jobs = discover_live_jobs(max_results=limit, write_to_jobs_txt=update_queue)
+    return {
+        "status": "Live job discovery completed",
+        "total_discovered": len(jobs),
+        "healthcare_priority_1": sum(1 for j in jobs if j.get("priority") == 1),
+        "jobs": jobs,
+    }
 
 
 @app.post("/trigger-scan")
