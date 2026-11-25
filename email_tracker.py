@@ -400,7 +400,6 @@ def rule_based_fallback_classification(
         summary = f"Application officially received and under review by {matched}."
     else:
         summary = f"General communication received from {matched}."
-    else: 
 
     return EmailClassification(
         is_job_update=is_update,

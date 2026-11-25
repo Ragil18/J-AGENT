@@ -198,8 +198,13 @@ class RecruiterFinder:
         # 1. Look for explicit emails inside the scraped JD text
         found_emails = re.findall(r"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+", jd_text)
         for email in found_emails:
-            # Filter out generic ATS system emails
-            if not any(skip in email.lower() for skip in ["no-reply", "noreply", "donotreply", "support@"]):
+            # Filter out generic ATS system, ADA accommodations, legal, or support emails
+            blocked_prefixes = [
+                "no-reply", "noreply", "donotreply", "support@",
+                "accommodations@", "accommodation@", "accessibility@",
+                "ada@", "privacy@", "legal@", "security@", "press@", "media@", "help@", "info@",
+            ]
+            if not any(skip in email.lower() for skip in blocked_prefixes):
                 contacts.append(
                     RecruiterContact(
                         name="Hiring Team",
